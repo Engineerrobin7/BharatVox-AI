@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+pydantic==2.5.0 
+python-multipart   
+librosa
+numpy
+scipy
+scikit-learn
+python-dotenv
+sqlalchemy
+aiosqlite
+joblib
+soundfile
+fsspec
+
+1

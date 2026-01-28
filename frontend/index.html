@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BharatVox AI - Voice Detection System</title>
+    <meta name="description" content="AI-powered voice detection system for Indian languages">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <h1>🎙️ BharatVox AI</h1>
+                <p class="tagline">Advanced Voice Detection for Indian Languages</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-section card">
+                <h2>Upload Voice Recording</h2>
+                
+                <div class="form-group">
+                    <label for="language">Select Language</label>
+                    <select id="language" class="input-field">
+                        <option value="">-- Choose Language --</option>
+                        <option value="Tamil">Tamil (தமிழ்)</option>
+                        <option value="English">English</option>
+                        <option value="Hindi">Hindi (हिन्दी)</option>
+                        <option value="Malayalam">Malayalam (മലയാളം)</option>
+                        <option value="Telugu">Telugu (తెలుగు)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="audioFile">Upload MP3 File</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="audioFile" accept=".mp3,audio/mp3" class="file-input">
+                        <label for="audioFile" class="file-label">
+                            <span class="file-icon">📁</span>
+                            <span id="fileName">Choose MP3 file...</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="apiKey">API Key</label>
+                    <input type="password" id="apiKey" class="input-field" placeholder="Enter your API key">
+                </div>
+
+                <button id="analyzeBtn" class="btn-primary" disabled>
+                    <span class="btn-text">Analyze Voice</span>
+                    <span class="btn-loader" style="display: none;">⏳ Processing...</span>
+                </button>
+            </div>
+
+            <div id="resultSection" class="result-section card">
+                <h2>Analysis Results</h2>
+                
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-label">Language</span>
+                        <span id="resultLanguage" class="result-value">-</span>
+                    </div>
+                    
+                    <div class="result-item">
+                        <span class="result-label">Classification</span>
+                        <span id="resultClassification" class="result-value classification-badge">-</span>
+                    </div>
+                    
+                    <div class="result-item full-width">
+                        <span class="result-label">Confidence Score</span>
+                        <div class="confidence-bar-container">
+                            <div id="confidenceBar" class="confidence-bar" style="width: 0%"></div>
+                            <span id="confidenceScore" class="confidence-text">0%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="result-item full-width">
+                        <span class="result-label">Explanation</span>
+                        <p id="resultExplanation" class="result-explanation">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="errorSection" class="error-section card" style="display: none;">
+                <h3>❌ Error</h3>
+                <p id="errorMessage"></p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>BharatVox AI © 2026 | Powered by Advanced ML Technology</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

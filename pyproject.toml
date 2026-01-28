@@ -1,0 +1,12 @@
+[project]
+name = "bharatvox-ai"
+version = "0.1.0"
+description = "AI-powered voice detection system for Indian languages"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["backend*", "ml_engine*"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
