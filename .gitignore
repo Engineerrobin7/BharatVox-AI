@@ -57,3 +57,4 @@ build/
 
 # Training data
 data/training_data/
+.vercel
