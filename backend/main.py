@@ -50,22 +50,22 @@ app.add_middleware(
 # Include API router
 app.include_router(router, prefix="/api", tags=["Voice Detection"])
 
-@app.get("/", tags=["Root"])
-async def root():
-    """Root endpoint - GET"""
+@app.get("/api", tags=["Root"])
+async def api_root_get():
+    """API root endpoint - GET"""
     return {
-        "message": "Welcome to BharatVox AI",
+        "message": "Welcome to BharatVox AI API",
         "version": "1.0.0",
         "docs": "/docs",
-        "api": "/api/voice-detection"
+        "voiceDetection": "/api/voice-detection"
     }
 
 
-@app.post("/", tags=["Root"])
-async def root_post(request: dict):
+@app.post("/api", tags=["Root"])
+async def api_root_post(request: dict):
     """
-    Root POST endpoint for direct voice detection.
-    Accepts: language, audio_format, audio_base64
+    API POST endpoint for direct voice detection.
+    Accepts JSON body with: language, audio_format, audio_base64
     """
     from app.models import VoiceDetectionRequest
     from app.core import verify_api_key

@@ -19,10 +19,10 @@ Expected response:
 
 ---
 
-### 2. Root POST Endpoint (Direct Voice Detection)
+### 2. API POST Endpoint (Direct Voice Detection)
 
 ```bash
-curl -X POST "http://localhost:8000/" \
+curl -X POST "http://localhost:8000/api" \
   -H "Content-Type: application/json" \
   -d '{
     "language": "English",
