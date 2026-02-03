@@ -19,7 +19,42 @@ Expected response:
 
 ---
 
-## 2. Voice Detection Request
+### 2. Root POST Endpoint (Direct Voice Detection)
+
+```bash
+curl -X POST "http://localhost:8000/" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "language": "English",
+    "audio_format": "mp3",
+    "audio_base64": "YOUR_BASE64_ENCODED_MP3_HERE"
+  }'
+```
+
+Expected success response:
+```json
+{
+  "status": "success",
+  "language": "English",
+  "classification": "HUMAN",
+  "confidenceScore": 0.92,
+  "explanation": "Detected human voice with natural spectral variation...",
+  "responseTimeMs": 245
+}
+```
+
+Expected error response (missing fields):
+```json
+{
+  "status": "error",
+  "message": "Missing required fields: audio_base64",
+  "code": 400
+}
+```
+
+---
+
+### 3. Voice Detection Request
 
 ### Using cURL
 
