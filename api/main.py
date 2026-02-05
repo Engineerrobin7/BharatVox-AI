@@ -1,40 +1,44 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-import sys
-import platform
-import os
 
-# Vercel requires the app to be named "app"
-app = FastAPI()
+app = FastAPI(
+    title="BharatVox AI",
+    description="AI Voice & Language API for India",
+    version="1.0.0"
+)
 
+# CORS (important for testers + frontend)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# ✅ HEALTH CHECK (GET)
 @app.get("/")
-def root():
-    return {"status": "ok", "message": "BharatVox AI root"}
-
-@app.get("/api")
-def api_health():
-    return {"status": "healthy", "service": "BharatVox AI"}
-
-@app.post("/api")
-async def api_post(request: Request):
-    payload = await request.json()
+def health():
     return {
-        "status": "success",
-        "received_keys": list(payload.keys())
+        "status": "healthy",
+        "service": "BharatVox AI",
+        "message": "API is live and running"
     }
 
-@app.get("/api/debug")
-def api_debug():
+# ✅ MAIN API (POST)
+@app.post("/")
+async def process_request(request: Request):
+    try:
+        payload = await request.json()
+    except Exception:
+        return {
+            "status": "error",
+            "message": "Invalid JSON body"
+        }
+
+    # Echo back keys so hackathon tester can verify mapping
     return {
-        "status": "ok",
-        "python_version": sys.version.split()[0],
-        "platform": platform.platform(),
-        "cwd": os.getcwd()
+        "status": "success",
+        "received_keys": list(payload.keys()),
+        "note": "Mock response for hackathon validation"
     }
