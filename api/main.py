@@ -1,44 +1,73 @@
-from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 
-app = FastAPI(
-    title="BharatVox AI",
-    description="AI Voice & Language API for India",
-    version="1.0.0"
-)
+app = FastAPI()
 
-# CORS (important for testers + frontend)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# ✅ HEALTH CHECK (GET)
 @app.get("/")
 def health():
+    return {"status": "BharatVox AI running"}
+
+@app.post("/api")
+def post_api(payload: dict):
     return {
-        "status": "healthy",
-        "service": "BharatVox AI",
-        "message": "API is live and running"
+        "message": "POST working",
+        "data": payload
+    }
+@app.get("/api")
+def get_api():
+    return {
+        "message": "GET working"
     }
 
-# ✅ MAIN API (POST)
-@app.post("/")
-async def process_request(request: Request):
-    try:
-        payload = await request.json()
-    except Exception:
-        return {
-            "status": "error",
-            "message": "Invalid JSON body"
-        }
-
-    # Echo back keys so hackathon tester can verify mapping
+@app.put("/api")
+def put_api():
     return {
-        "status": "success",
-        "received_keys": list(payload.keys()),
-        "note": "Mock response for hackathon validation"
+        "message": "PUT working"
+    }
+
+@app.delete("/api")
+def delete_api():
+    return {
+        "message": "DELETE working"
+    }
+
+@app.patch("/api")
+def patch_api():
+    return {
+        "message": "PATCH working"
+    }
+
+@app.options("/api")
+def options_api():
+    return {
+        "message": "OPTIONS working"
+    }
+
+@app.head("/api")
+def head_api():
+    return {
+        "message": "HEAD working"
+    }
+
+@app.trace("/api")
+def trace_api():
+    return {
+        "message": "TRACE working"
+    }
+
+@app.connect("/api")
+def connect_api():
+    return {
+        "message": "CONNECT working"
+    }
+
+@app.websocket("/api")
+def websocket_api():
+    return {
+        "message": "WEBSOCKET working"
+    }
+
+@app.middleware("/api")
+def middleware_api():
+    return {
+        "message": "MIDDLEWARE working"
     }
