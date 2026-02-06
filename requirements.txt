@@ -1,2 +1,14 @@
 fastapi
-uvicorn
+uvicorn[standard]
+gunicorn
+python-multipart
+librosa
+numpy
+scipy
+scikit-learn
+python-dotenv
+sqlalchemy
+aiosqlite
+joblib
+soundfile
+fsspec

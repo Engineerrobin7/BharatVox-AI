@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import router
-from app.models import init_db
+from .app.api import router
+from .app.models import init_db
 import sys
 from pathlib import Path
 
@@ -67,12 +67,12 @@ async def api_root_post(request: dict):
     API POST endpoint for direct voice detection.
     Accepts JSON body with: language, audio_format, audio_base64
     """
-    from app.models import VoiceDetectionRequest
-    from app.core import verify_api_key
-    from app.services import decode_base64_audio, validate_audio_format
+    from .app.models import VoiceDetectionRequest
+    from .app.core import verify_api_key
+    from .app.services import decode_base64_audio, validate_audio_format
     from ml_engine import get_classifier
     from sqlalchemy.orm import Session
-    from app.models import get_db, InferenceLog
+    from .app.models import get_db, InferenceLog
     import time
     
     try:
