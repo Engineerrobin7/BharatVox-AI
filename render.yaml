@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: bharatvox-api
+    runtime: python-3.11
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn backend.main:app --worker-class uvicorn.workers.UvicornWorker --timeout 120 --bind 0.0.0.0:10000
+    autoDeploy: true

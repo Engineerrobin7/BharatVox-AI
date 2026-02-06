@@ -1,5 +1,6 @@
 fastapi
 uvicorn[standard]
+gunicorn
 pydantic==2.5.0 
 python-multipart   
 librosa
